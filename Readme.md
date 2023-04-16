@@ -37,5 +37,5 @@ El resultado debe ser mostrado en la pantalla.
 
 
 ### Link del proyecto:
-<a href="https://vladortegab.github.io/encriptador-texto/">https://vladortegab.github.io/encriptador-texto/index.html
+<a href="https://vladortegab.github.io/encriptador-texto/">https://vladortegab.github.io/encriptador-texto/
 </a>
