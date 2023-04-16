@@ -32,8 +32,9 @@ El resultado debe ser mostrado en la pantalla.
 
 ### Mockup web:
 <a href="#">
-  <img align="center" width = 1000px src=https://github.com/vladortegab./encriptador-texto/blob/main/Figma/Mockups.png?raw=true"
+  <img align="center" width = 1000px src=https://github.com/vladortegab/encriptador-texto/blob/master/Figma/Mockups.png?raw=true"
 </a>
+
 
 ### Link del proyecto:
 <a href="https://vladortegab.github.io/encriptador-texto/">https://github.com/vladortegab/encriptador-texto/
