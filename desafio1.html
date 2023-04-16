@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Proyecto Ecriptador- Desafio 01</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <link rel='shortcut icon' href='img/alura.png'>
+
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <main>
+
+
+        <div class="fondo-encriptador">
+            <img class="logo" src="/img/letra_alura.png">
+            <div class="frame3">
+
+                <button class="boton1" id="encriptar" onclick="mostrarTexto()">
+                    <div class="textobtn1">
+                        Encriptar
+                    </div>
+
+                </button>
+                <button class="boton2" id="desencriptar" onclick="">
+                    <div class="textobtn2">
+                        Desencriptar
+                    </div>
+
+                </button>
+
+
+            </div>
+            <div class="frame6">
+                <div class="frame1">
+                    <img class="vector" src="/img/vector.png">
+                    <div class="textovector"> Solo letras minúsculas y sin acentos
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="frame16">
+                <div class="rectangulo1">
+                </div>
+                <div class="frame11">
+                    <div class="resultado" id="div-resultado" style="display:none">
+                        <textarea id="mensaje" style="display:none"></textarea>
+
+                        <div id="resultado" class="resultado" ></div>
+
+                        <button class="btn-copiar" id="copiar">Copiar</button>
+
+                    </div>
+
+                </div>
+
+                <div class="rectangulo2" id="mostrarTexto">
+                    <img class="imagen1" src="/img/ImagenFondo.png">
+                    <div class="frame5">
+
+                        <div class="texto1Frame5">
+                            Ningún mensaje fue encontrado
+                        </div>
+                        <div class="texto2Frame5">
+                            Ingresa el texto que desees encriptar o desencriptar
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <textarea class="textoPrinicipal" id="texto" name="textarea" rows="10"
+                cols="50">Ingrese el texto aqui</textarea>
+
+
+        </div>
+        <div class="rodapie">
+
+            © Copyright <strong><span>Vladimir Ortega Botero</span></strong>.
+
+
+        </div>
+        <script>
+
+
+            var codigos = {
+                e: 'enter',
+                i: 'imes',
+                a: 'ai',
+                o: 'ober',
+                u: 'ufat'
+            }
+
+            function mostrarTexto(texto) {
+                var divResultado = document.getElementById('div-resultado');
+                var divInicial = document.getElementById('mostrarTexto');
+
+                document.getElementById('mensaje').value = texto;
+                document.getElementById('resultado').innerText = texto;
+                document.getElementById('texto').value = '';
+
+                divResultado.removeAttribute('style');
+                divInicial.setAttribute('style', 'display: none');
+            }
+
+            function encriptar() {
+                var texto = document.getElementById('texto').value.toLowerCase();
+                var newTexto = '';
+                var txt;
+                if (texto && texto != ' ') {
+
+                    for (var i = 0; i < texto.length; i++) {
+
+                        for (var ky in codigos) {
+                            if (texto[i] == ky) {
+                                txt = codigos[ky];
+                                break;
+                            } else {
+                                txt = texto[i];
+                            }
+                        }
+                        newTexto = newTexto + txt;
+                    }
+
+                    mostrarTexto(newTexto);
+
+                } else {
+                    alert('Ingrese un texto');
+                }
+
+            }
+
+            function desencriptar() {
+
+                var texto = document.getElementById('texto').value.toLowerCase();
+                var newTexto = '';
+                var letra;
+
+                if (texto && texto != ' ') {
+                    while (texto.length > 0) {
+                        var contador = 0;
+                        for (var ky in codigos) {
+                            if (codigos.hasOwnProperty(ky)) {
+                                if (texto[0] == ky) {
+                                    if (texto.substring(0, codigos[ky].length) == codigos[ky]) {
+                                       
+                                        letra = ky;
+                                        
+                                        texto = texto.slice(codigos[ky].length);
+
+                                    } else {
+                                        letra = texto[0];
+                                        texto = texto.slice(1);
+                                    }
+
+                                    contador++;
+
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (contador === 0) {
+                            letra = texto[0];
+                            texto = texto.slice(1);
+                        }
+
+                        newTexto = newTexto + letra;
+                    }
+
+                    mostrarTexto(newTexto);
+
+                } else {
+                    alert('Ingrese un texto para continuar');
+                }
+
+            }
+
+            function copyText() {
+                var copyText = document.getElementById("mensaje").value;
+                navigator.clipboard.writeText(copyText).then(() => {
+                    alert("Texto copiado, precione las teclas CTRL + V para pegar el texto!");
+                    
+                    document.getElementById("texto").focus();
+                });
+            }
+
+            var btnEncriptar = document.getElementById('encriptar');
+            var btnDesencriptar = document.getElementById('desencriptar');
+            var btnCopiar = document.getElementById('copiar');
+
+            btnEncriptar.onclick = encriptar;
+            btnDesencriptar.onclick = desencriptar;
+            btnCopiar.onclick = copyText;
+
+
+        </script>
+
+    </main>
+
+
+
+
+
+</body>
+
+
+</html>
